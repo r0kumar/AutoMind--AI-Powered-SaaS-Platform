@@ -11,11 +11,12 @@ export interface RecordDialogProps {
 }
 
 export function RecordDialog({ title, onClose, onSave }: RecordDialogProps) {
+  const isCustomer = title.toLowerCase().includes('customer');
+  const isJob = title.toLowerCase().includes('job') || title.toLowerCase().includes('card');
   const [name, setName] = useState('');
   const [branch, setBranch] = useState(initialRows.branches[0].name);
-  const [status, setStatus] = useState('Confirmed');
+  const [status, setStatus] = useState(isCustomer ? 'Active' : 'Confirmed');
   const [notes, setNotes] = useState('');
-  const isJob = title.toLowerCase().includes('job') || title.toLowerCase().includes('card');
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/45 p-4">
@@ -36,13 +37,13 @@ export function RecordDialog({ title, onClose, onSave }: RecordDialogProps) {
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
           <label className="text-xs font-semibold sm:col-span-2">
-            Name or customer
+            {isCustomer ? 'Customer full name' : 'Name or description'}
             <input
               value={name}
               onChange={(e) => setName(e.target.value)}
               data-testid="input-dialog-name"
               className="mt-1.5 h-10 w-full rounded-lg border bg-background px-3 text-sm outline-none focus:border-cyan-500"
-              placeholder={isJob ? 'e.g. Full periodic service' : 'Start typing...'}
+              placeholder={isCustomer ? 'e.g. Rajesh Sharma' : isJob ? 'e.g. Full periodic service' : 'Start typing...'}
             />
           </label>
           <label className="text-xs font-semibold">
@@ -64,20 +65,30 @@ export function RecordDialog({ title, onClose, onSave }: RecordDialogProps) {
               onChange={(e) => setStatus(e.target.value)}
               className="mt-1.5 h-10 w-full rounded-lg border bg-background px-3 text-sm outline-none"
             >
-              <option>Confirmed</option>
-              <option>In progress</option>
-              <option>Draft</option>
-              <option>Healthy</option>
-              <option>Stable</option>
+              {isCustomer ? (
+                <>
+                  <option>Active</option>
+                  <option>At risk</option>
+                  <option>Confirmed</option>
+                </>
+              ) : (
+                <>
+                  <option>Confirmed</option>
+                  <option>In progress</option>
+                  <option>Draft</option>
+                  <option>Healthy</option>
+                  <option>Stable</option>
+                </>
+              )}
             </select>
           </label>
           <label className="text-xs font-semibold sm:col-span-2">
-            Notes
+            {isCustomer ? 'Contact email / notes' : 'Notes'}
             <textarea
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               className="mt-1.5 min-h-20 w-full resize-none rounded-lg border bg-background p-3 text-sm outline-none focus:border-cyan-500"
-              placeholder="Add context for your team..."
+              placeholder={isCustomer ? 'e.g. rajesh.sharma@email.com · +91 98200 12345' : 'Add context for your team...'}
             />
           </label>
         </div>
@@ -88,12 +99,14 @@ export function RecordDialog({ title, onClose, onSave }: RecordDialogProps) {
           <Button
             onClick={() =>
               onSave({
-                id: `new-${Date.now()}`,
-                name: name.trim() || 'Untitled workspace record',
-                detail: `${branch} · ${notes.trim() || 'Added from workspace'}`,
-                meta: 'Created just now',
-                status,
-                secondary: notes.trim() || 'New record',
+                id: `${isCustomer ? 'cus' : 'new'}-${Date.now()}`,
+                name: name.trim() || (isCustomer ? 'New Customer' : 'Untitled workspace record'),
+                detail: isCustomer
+                  ? (notes.trim() || `${branch} · Customer profile`)
+                  : `${branch} · ${notes.trim() || 'Added from workspace'}`,
+                meta: isCustomer ? '1 vehicle · 1 visit' : 'Created just now',
+                status: status || (isCustomer ? 'Active' : 'Confirmed'),
+                secondary: isCustomer ? branch : (notes.trim() || 'New record'),
                 amount: isJob ? '₹0' : undefined,
               })
             }

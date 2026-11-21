@@ -10,6 +10,9 @@ import { notFoundHandler } from "./middlewares/notFound";
 
 const app: Express = express();
 
+// Disable ETag generation to ensure dynamic API data is never served with stale 304 responses
+app.set("etag", false);
+
 // Security headers
 app.use(securityHeaders);
 
@@ -40,6 +43,12 @@ app.use(
     },
   }),
 );
+
+// Prevent caching on API endpoints
+app.use("/api", (_req, res, next) => {
+  res.set("Cache-Control", "no-store, no-cache, must-revalidate, private");
+  next();
+});
 
 // Body parsers
 app.use(express.json());

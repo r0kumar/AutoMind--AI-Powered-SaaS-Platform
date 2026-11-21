@@ -18,7 +18,7 @@ export function useModuleData(moduleKey: string) {
         return fallback;
       }
     },
-    staleTime: 1000 * 30,
+    staleTime: 0,
   });
 
   const mutation = useMutation({
@@ -28,7 +28,13 @@ export function useModuleData(moduleKey: string) {
         body: JSON.stringify(newRecord),
       });
     },
-    onSuccess: () => {
+    onSuccess: (savedRecord) => {
+      if (savedRecord && savedRecord.id) {
+        queryClient.setQueryData<Row[]>(["moduleData", moduleKey], (old = []) => [
+          savedRecord,
+          ...old.filter((r) => r.id !== savedRecord.id),
+        ]);
+      }
       queryClient.invalidateQueries({ queryKey: ["moduleData", moduleKey] });
       queryClient.invalidateQueries({ queryKey: ["kpis"] });
     },
@@ -38,10 +44,13 @@ export function useModuleData(moduleKey: string) {
     records,
     isLoading,
     isError,
-    save: (record: Row, onDone?: () => void) => {
-      mutation.mutate(record, {
-        onSuccess: () => onDone?.(),
-      });
+    save: async (record: Row, onDone?: () => void) => {
+      try {
+        await mutation.mutateAsync(record);
+        onDone?.();
+      } catch (err) {
+        console.error(`Failed to save record to ${moduleKey}:`, err);
+      }
     },
     isSaving: mutation.isPending,
   };
