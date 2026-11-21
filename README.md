@@ -7,7 +7,14 @@
 [![Node.js](https://img.shields.io/badge/Node.js-24%2B-green.svg?logo=node.js)](https://nodejs.org/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-18-336791.svg?logo=postgresql)](https://www.postgresql.org/)
 [![Drizzle ORM](https://img.shields.io/badge/Drizzle_ORM-0.45-c5f74f.svg)](https://orm.drizzle.team/)
+[![Vercel Deployment](https://img.shields.io/badge/Frontend-Vercel-black?logo=vercel)](https://auto-mind-ai-powered-saa-s-platform.vercel.app/)
+[![Render Deployment](https://img.shields.io/badge/Backend-Render-46E3B7?logo=render&logoColor=black)](https://automind-backend-v9wk.onrender.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+> 🚀 **Live Deployments:**
+> - **Frontend (Vercel)**: [https://auto-mind-ai-powered-saa-s-platform.vercel.app/](https://auto-mind-ai-powered-saa-s-platform.vercel.app/)
+> - **Backend API (Render)**: [https://automind-backend-v9wk.onrender.com](https://automind-backend-v9wk.onrender.com)
+> - **API Health Check**: [https://automind-backend-v9wk.onrender.com/api/healthz](https://automind-backend-v9wk.onrender.com/api/healthz)
 
 AutoMind AI is a modern PERN-stack (PostgreSQL, Express, React, Node.js) platform built inside a high-performance **pnpm monorepo**. It centralizes the entire automotive workshop workflow—from customer appointment scheduling and digital repair cards to workshop bay Kanban queues, spare parts inventory tracking, and multi-branch network analytics.
 
@@ -15,6 +22,7 @@ AutoMind AI is a modern PERN-stack (PostgreSQL, Express, React, Node.js) platfor
 
 ## Table of Contents
 
+- [Live Deployments](#live-deployments)
 - [Overview](#overview)
 - [Features](#features)
 - [Project Status](#project-status)
@@ -36,6 +44,18 @@ AutoMind AI is a modern PERN-stack (PostgreSQL, Express, React, Node.js) platfor
 - [Screenshots](#screenshots)
 - [Contributing & License](#contributing--license)
 - [Author](#author)
+
+---
+
+## Live Deployments
+
+| Component | Platform | URL | Status |
+| :--- | :--- | :--- | :--- |
+| **Frontend Web App** | **Vercel** | [https://auto-mind-ai-powered-saa-s-platform.vercel.app/](https://auto-mind-ai-powered-saa-s-platform.vercel.app/) | ![Vercel](https://img.shields.io/badge/Status-Active-brightgreen) |
+| **Backend API** | **Render** | [https://automind-backend-v9wk.onrender.com](https://automind-backend-v9wk.onrender.com) | ![Render](https://img.shields.io/badge/Status-Live-brightgreen) |
+| **API Health Check** | **Render** | [https://automind-backend-v9wk.onrender.com/api/healthz](https://automind-backend-v9wk.onrender.com/api/healthz) | `200 OK` |
+| **KPIs Metric Endpoint** | **Render** | [https://automind-backend-v9wk.onrender.com/api/kpis](https://automind-backend-v9wk.onrender.com/api/kpis) | `200 OK` |
+| **PostgreSQL Database** | **Render Managed PG** | Internal & SSL Connections Configured | Connected |
 
 ---
 
@@ -549,4 +569,4 @@ This project is licensed under the **MIT License** — see the root [package.jso
 
 - **Rohit Kumar**
   - GitHub: [@r0kumar](https://github.com/r0kumar)
-  - Project: [AutoMind AI](https://github.com/r0kumar/AutoMind-AI)
+  - Repository: [AutoMind--AI-Powered-SaaS-Platform](https://github.com/r0kumar/AutoMind--AI-Powered-SaaS-Platform)
