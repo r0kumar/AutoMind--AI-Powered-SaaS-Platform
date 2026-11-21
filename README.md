@@ -101,7 +101,7 @@ AutoMind AI features 11 dedicated functional views:
 
 ## Tech Stack
 
-All versions are extracted directly from `pnpm-workspace.yaml`, `backend/package.json`, and `fronted/package.json`:
+All versions are extracted directly from `pnpm-workspace.yaml`, `backend/package.json`, and `frontend/package.json`:
 
 | Category | Technology | Version | Purpose |
 | :--- | :--- | :--- | :--- |
@@ -169,9 +169,6 @@ The backend implements a clean, layered architecture ensuring separation of conc
 
 ## Folder Structure
 
-> [!IMPORTANT]
-> In accordance with the workspace configuration, the frontend folder is named **`fronted`**.
-
 ```text
 AutoMind-AI/
 ├── backend/                             # Express 5 & PostgreSQL Backend
@@ -193,7 +190,7 @@ AutoMind-AI/
 │   ├── drizzle.config.ts                # Drizzle Kit migration and Studio configuration
 │   ├── package.json                     # Backend scripts and dependencies
 │   └── tsconfig.json                    # Backend TypeScript configuration
-├── fronted/                             # React 19 + Vite Frontend (named "fronted")
+├── frontend/                            # React 19 + Vite Frontend
 │   ├── public/                          # Static assets (logo.png, favicon.png)
 │   ├── src/
 │   │   ├── api/                         # HTTP client (custom-fetch.ts)
@@ -410,9 +407,9 @@ Create environment files from the provided templates:
 
 2. **Frontend Configuration**:
    ```bash
-   cp fronted/.env.example fronted/.env
+   cp frontend/.env.example frontend/.env
    ```
-   Configure the following variables in `fronted/.env`:
+   Configure the following variables in `frontend/.env`:
    - `PORT`: Vite development server port (defaults to `5173`).
    - `BASE_PATH`: Client asset deployment base path (`/`).
    - `VITE_API_URL`: Target backend proxy destination (`http://localhost:3001`).
@@ -443,7 +440,7 @@ Alternatively, run each service independently:
   API runs on `http://localhost:3001`
 - **Frontend only**:
   ```bash
-  pnpm run dev:fronted
+  pnpm run dev:frontend
   ```
   UI runs on `http://localhost:5173`
 
@@ -457,7 +454,7 @@ Useful scripts available in the workspace:
 | :--- | :--- | :--- |
 | `pnpm run dev` | Root | Concurrently runs backend (`:3001`) and frontend (`:5173`) in watch mode |
 | `pnpm run dev:backend` | Root | Starts the backend development server |
-| `pnpm run dev:fronted` | Root | Starts the Vite frontend development server |
+| `pnpm run dev:frontend` | Root | Starts the Vite frontend development server |
 | `pnpm run build` | Root | Typechecks workspace and builds both backend (esbuild) and frontend (Vite) |
 | `pnpm run typecheck` | Root | Runs `tsc --noEmit` across all workspace packages |
 | `pnpm run test` | Root | Runs the test suites across all packages |

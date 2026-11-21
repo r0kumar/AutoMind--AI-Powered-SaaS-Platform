@@ -7,7 +7,7 @@
       "path": "./backend"
     },
     {
-      "path": "./fronted"
+      "path": "./frontend"
     }
   ]
 }
