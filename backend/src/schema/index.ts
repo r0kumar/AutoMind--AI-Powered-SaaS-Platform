@@ -6,4 +6,3 @@ export const HealthStatus = zod.object({
 
 export const HealthCheckResponse = HealthStatus;
 export type HealthStatusType = zod.infer<typeof HealthStatus>;
-export * from "./types/healthStatus";
