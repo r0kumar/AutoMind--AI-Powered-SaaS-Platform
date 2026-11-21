@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import * as Icons from 'lucide-react';
-import { initialRows } from '@/data/mockData';
 import type { Row } from '@/types';
 import { PageHeader } from '@/components/shared/PageHeader';
 import { StatusBadge } from '@/components/shared/StatusBadge';
@@ -17,8 +16,6 @@ export function CustomersPage() {
   const [selected, setSelected] = useState<Row | null>(null);
   const [modal, setModal] = useState(false);
   const [message, setMessage] = useState('');
-
-  const activeSelected = selected || records[0] || null;
 
   const filtered = records.filter(
     (item) =>
