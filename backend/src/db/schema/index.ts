@@ -98,3 +98,17 @@ export const branchesTable = pgTable("branches", {
   secondary: text("secondary"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
+
+export type ModuleTable =
+  | typeof appointmentsTable
+  | typeof customersTable
+  | typeof vehiclesTable
+  | typeof serviceJobsTable
+  | typeof jobCardsTable
+  | typeof sparePartsTable
+  | typeof serviceHistoryTable
+  | typeof billingTable
+  | typeof branchesTable;
+
+export type ModuleRow = typeof appointmentsTable.$inferSelect;
+export type NewModuleRow = typeof appointmentsTable.$inferInsert;
