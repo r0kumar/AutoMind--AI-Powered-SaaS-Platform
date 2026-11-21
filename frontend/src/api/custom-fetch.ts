@@ -11,7 +11,10 @@ export type AuthTokenGetter = () => Promise<string | null> | string | null;
 const NO_BODY_STATUS = new Set([204, 205, 304]);
 const DEFAULT_JSON_ACCEPT = "application/json, application/problem+json";
 
-let _baseUrl: string | null = null;
+let _baseUrl: string | null =
+  typeof import.meta !== "undefined" && import.meta.env?.VITE_API_URL
+    ? (import.meta.env.VITE_API_URL as string).replace(/\/+$/, "")
+    : null;
 let _authTokenGetter: AuthTokenGetter | null = null;
 
 /**
