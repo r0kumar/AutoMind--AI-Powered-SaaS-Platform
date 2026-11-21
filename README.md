@@ -210,7 +210,6 @@ AutoMind-AI/
 │   ├── package.json                     # Frontend scripts and dependencies
 │   ├── tsconfig.json                    # Frontend TypeScript configuration
 │   └── vite.config.ts                   # Vite configuration with /api reverse proxy
-├── docs/                                # API inventory & project documentation
 ├── package.json                         # Monorepo root workspace scripts
 ├── pnpm-lock.yaml                       # Strict locked dependency graph
 ├── pnpm-workspace.yaml                  # Monorepo workspace & catalog definition
